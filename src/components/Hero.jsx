@@ -68,19 +68,19 @@ export default function Hero() {
           <div className="glass relative overflow-hidden rounded-[2rem] p-3 shadow-glow">
             <div className="overflow-hidden rounded-[1.5rem]">
               <img
-                src={portrait}
+                // src={portrait}
                 alt="Natnael Deribe portrait"
                 width={768}
                 height={896}
                 className="h-full w-full object-cover"
               />
             </div>
-            <div className="glass animate-float absolute -bottom-4 -left-4 rounded-2xl px-4 py-3 shadow-soft">
-              {/* <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+            {/* <div className="glass animate-float absolute -bottom-4 -left-4 rounded-2xl px-4 py-3 shadow-soft">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
                 Currently
-              </div> */}
-              {/* <div className="text-sm font-semibold">Droga Consulting PLC</div> */}
-            </div>
+              </div>
+              <div className="text-sm font-semibold">Droga Consulting PLC</div>
+            </div> */}
             <div className="glass animate-float absolute -left+3 bottom-2 rounded-2xl px-4 py-3 shadow-soft [animation-delay:1s]">
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
                 Award
