@@ -3,8 +3,8 @@ import { Code2, Server, Palette } from "lucide-react";
 const services = [
   {
     icon: Code2,
-    title: "Laravel Backend Development",
-    desc: "Production-grade Laravel applications: REST APIs, authentication, role-based access, MVC architecture and admin dashboards.",
+    title: "Backend Development",
+    desc: "Production-grade applications: REST APIs, authentication, role-based access, MVC architecture and admin dashboards.",
     points: ["REST APIs & CRUD", "MySQL & migrations", "Auth & roles"],
   },
   {

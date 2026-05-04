@@ -3,9 +3,18 @@ import { Database, Network, Brush } from "lucide-react";
 const groups = [
   {
     icon: Database,
-    title: "Laravel Backend",
+    title: "Backend",
     accent: "Primary focus",
-    skills: ["Laravel", "PHP", "REST APIs", "MySQL", "Authentication", "CRUD", "MVC", "Admin Dashboards"],
+    skills: [
+      "Laravel",
+      "PHP",
+      "REST APIs",
+      "MySQL",
+      "Authentication",
+      "CRUD",
+      "MVC",
+      "Admin Dashboards",
+    ],
   },
   {
     icon: Network,

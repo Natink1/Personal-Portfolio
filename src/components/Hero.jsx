@@ -1,4 +1,4 @@
-import portrait from "@/assets/portrait.jpg";
+import portrait from "@/assets/portrait.png";
 import { ArrowRight, Mail, Code2, Server, Sparkles } from "lucide-react";
 
 export default function Hero() {
@@ -19,15 +19,14 @@ export default function Hero() {
           </h1>
 
           <p className="mt-5 text-lg font-medium text-foreground/90 sm:text-xl">
-            Laravel Backend Developer{" "}
-            <span className="text-muted-foreground">|</span> IT Systems Specialist{" "}
-            <span className="text-muted-foreground">|</span>{" "}
+            Laravel Backend Developer <span className="text-muted-foreground">|</span> IT Systems
+            Specialist <span className="text-muted-foreground">|</span>{" "}
             <span className="text-primary">Creative Designer</span>
           </p>
 
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Building reliable backend systems, supporting IT infrastructure, and creating
-            clean visual identities.
+            Building reliable backend systems, supporting IT infrastructure, and creating clean
+            visual identities.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -77,12 +76,12 @@ export default function Hero() {
               />
             </div>
             <div className="glass animate-float absolute -bottom-4 -left-4 rounded-2xl px-4 py-3 shadow-soft">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
+              {/* <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
                 Currently
-              </div>
-              <div className="text-sm font-semibold">Droga Consulting PLC</div>
+              </div> */}
+              {/* <div className="text-sm font-semibold">Droga Consulting PLC</div> */}
             </div>
-            <div className="glass animate-float absolute -right-4 top-8 rounded-2xl px-4 py-3 shadow-soft [animation-delay:1s]">
+            <div className="glass animate-float absolute -left+3 bottom-2 rounded-2xl px-4 py-3 shadow-soft [animation-delay:1s]">
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
                 Award
               </div>

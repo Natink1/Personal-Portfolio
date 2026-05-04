@@ -8,7 +8,7 @@ export default function Works() {
 
   const filtered = useMemo(
     () => (active === "All" ? projects : projects.filter((p) => p.category === active)),
-    [active]
+    [active],
   );
 
   return (
@@ -75,9 +75,7 @@ export default function Works() {
 
               <div className="p-5">
                 <h3 className="font-display text-lg font-semibold">{p.title}</h3>
-                <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">
-                  {p.description}
-                </p>
+                <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">{p.description}</p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {p.tags.map((t) => (
                     <span
