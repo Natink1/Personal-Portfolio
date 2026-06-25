@@ -18,9 +18,9 @@ export default function Hero() {
             Natnael <span className="gradient-text">Deribe</span>
           </h1>
 
-          <p className="mt-5 text-lg font-medium text-foreground/90 sm:text-xl">
-            Laravel Backend Developer <span className="text-muted-foreground">|</span> IT Systems
-            Specialist <span className="text-muted-foreground">|</span>{" "}
+          <p className="mt-5 text-5xl font-black text-foreground/90 sm:text-xl">
+            Backend Developer <span className="text-muted-foreground">|</span> IT Support Specialist{" "}
+            <span className="text-muted-foreground">|</span>{" "}
             <span className="text-primary">Creative Designer</span>
           </p>
 
@@ -68,7 +68,7 @@ export default function Hero() {
           <div className="glass relative overflow-hidden rounded-[2rem] p-3 shadow-glow">
             <div className="overflow-hidden rounded-[1.5rem]">
               <img
-                // src={portrait}
+                src={portrait}
                 alt="Natnael Deribe portrait"
                 width={768}
                 height={896}
@@ -81,12 +81,10 @@ export default function Hero() {
               </div>
               <div className="text-sm font-semibold">Droga Consulting PLC</div>
             </div> */}
-            <div className="glass animate-float absolute -left+3 bottom-2 rounded-2xl px-4 py-3 shadow-soft [animation-delay:1s]">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
-                Award
-              </div>
-              <div className="text-sm font-semibold">🥇 Gold Medal — TVET</div>
-            </div>
+          </div>
+          <div className="glass animate-float absolute -right-20 bottom-5 rounded-2xl px-4 py-3 shadow-soft [animation-delay:1s]">
+            <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Award</div>
+            <div className="text-md font-semibold">🥇 Gold Medal — TVET</div>
           </div>
         </div>
       </div>
