@@ -1,24 +1,30 @@
 import portrait from "@/assets/portrait.png";
-import { ArrowRight, Mail, Code2, Server, Sparkles } from "lucide-react";
+import { ArrowRight, Mail, Code2, Server, Sparkles, Github } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-28">
-      <div className="absolute inset-0 grid-pattern opacity-40" />
-      <div className="pointer-events-none absolute -top-32 left-1/2 h-[420px] w-[820px] -translate-x-1/2 rounded-full bg-primary/30 blur-[140px]" />
+    <section
+      id="home"
+      className="relative min-h-[92vh] overflow-hidden pb-16 pt-28 lg:pb-20 lg:pt-36"
+    >
+      <div className="absolute inset-0 grid-pattern opacity-50" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/80 to-transparent" />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-[1.2fr_1fr]">
         <div className="animate-fade-up">
-          <div className="glass mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-medium text-primary">
+          <div className="mb-7 inline-flex items-center gap-2 border-l-2 border-primary bg-primary/8 px-3 py-1.5 text-xs font-medium uppercase tracking-[0.14em] text-primary">
             <span className="h-2 w-2 animate-pulse rounded-full bg-primary shadow-glow" />
             Available for new projects
           </div>
 
-          <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl">
+          <p className="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            Developer · Systems · Designer
+          </p>
+          <h1 className="font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
             Natnael <span className="gradient-text">Deribe</span>
           </h1>
 
-          <p className="mt-5 text-5xl font-black text-foreground/90 sm:text-xl">
+          <p className="mt-6 max-w-2xl text-base font-semibold leading-relaxed text-foreground/90 sm:text-xl">
             Backend Developer <span className="text-muted-foreground">|</span> IT Support Specialist{" "}
             <span className="text-muted-foreground">|</span>{" "}
             <span className="text-primary">Creative Designer</span>
@@ -32,17 +38,26 @@ export default function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <a
               href="#works"
-              className="group inline-flex items-center gap-2 rounded-full gradient-bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition-all hover:scale-105"
+              className="group inline-flex items-center gap-2 rounded-md gradient-bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-glow transition-all hover:-translate-y-0.5"
             >
               View Works
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#contact"
-              className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-foreground transition-all hover:border-primary hover:text-primary hover:shadow-glow"
+              className="glass inline-flex items-center gap-2 rounded-md px-6 py-3 text-sm font-semibold text-foreground transition-all hover:-translate-y-0.5 hover:border-primary hover:text-primary"
             >
               <Mail className="h-4 w-4" />
               Contact Me
+            </a>
+            <a
+              href="https://github.com/Natink1"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View GitHub profile"
+              className="glass grid h-11 w-11 place-items-center rounded-md text-muted-foreground transition-colors hover:text-primary"
+            >
+              <Github className="h-4 w-4" />
             </a>
           </div>
 
@@ -54,7 +69,7 @@ export default function Hero() {
             ].map(({ icon: Icon, label }) => (
               <div
                 key={label}
-                className="glass flex items-center gap-2 rounded-full px-3 py-1.5 text-xs text-muted-foreground"
+                className="flex items-center gap-2 border border-border bg-background/40 px-3 py-1.5 font-mono text-[11px] text-muted-foreground"
               >
                 <Icon className="h-3.5 w-3.5 text-primary" />
                 {label}
@@ -64,9 +79,9 @@ export default function Hero() {
         </div>
 
         <div className="relative mx-auto w-full max-w-sm animate-fade-up [animation-delay:200ms]">
-          <div className="absolute -inset-4 rounded-[2rem] gradient-soft blur-2xl" />
-          <div className="glass relative overflow-hidden rounded-[2rem] p-3 shadow-glow">
-            <div className="overflow-hidden rounded-[1.5rem]">
+          <div className="absolute -inset-3 border border-primary/15 bg-primary/5" />
+          <div className="glass relative overflow-hidden rounded-md p-2 shadow-glow">
+            <div className="relative overflow-hidden rounded-sm">
               <img
                 src={portrait}
                 alt="Natnael Deribe portrait"
@@ -74,6 +89,10 @@ export default function Hero() {
                 height={896}
                 className="h-full w-full object-cover"
               />
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/80 to-transparent" />
+              <div className="absolute bottom-3 left-3 flex items-center gap-2 bg-background/85 px-2.5 py-1.5 font-mono text-[10px] uppercase text-foreground backdrop-blur-md">
+                <span className="h-1.5 w-1.5 bg-emerald-400" /> Addis Ababa, ET
+              </div>
             </div>
             {/* <div className="glass animate-float absolute -bottom-4 -left-4 rounded-2xl px-4 py-3 shadow-soft">
               <div className="text-[10px] uppercase tracking-wider text-muted-foreground">
@@ -82,9 +101,9 @@ export default function Hero() {
               <div className="text-sm font-semibold">Droga Consulting PLC</div>
             </div> */}
           </div>
-          <div className="glass animate-float absolute -right-20 bottom-5 rounded-2xl px-4 py-3 shadow-soft [animation-delay:1s]">
+          <div className="glass animate-float absolute -bottom-7 right-2 rounded-md px-4 py-3 shadow-soft [animation-delay:1s] sm:-right-12 sm:bottom-5">
             <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Award</div>
-            <div className="text-md font-semibold">🥇 Gold Medal — TVET</div>
+            <div className="text-sm font-semibold">Gold Medal — TVET</div>
           </div>
         </div>
       </div>

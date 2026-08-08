@@ -16,7 +16,8 @@ export const projects = [
   {
     id: 1,
     title: "Laravel Business System",
-    description: "End-to-end business management platform with role-based access, inventory and reporting modules.",
+    description:
+      "End-to-end business management platform with role-based access, inventory and reporting modules.",
     category: "Laravel",
     tags: ["Laravel", "PHP", "MySQL", "Dashboard"],
     image: laravelBusiness,
@@ -24,7 +25,8 @@ export const projects = [
   {
     id: 2,
     title: "Laravel REST API",
-    description: "Token-authenticated REST API powering mobile and web clients with versioning and rate limiting.",
+    description:
+      "Token-authenticated REST API powering mobile and web clients with versioning and rate limiting.",
     category: "Laravel",
     tags: ["API", "Auth", "Backend"],
     image: laravelApi,
@@ -40,7 +42,8 @@ export const projects = [
   {
     id: 4,
     title: "Network Setup",
-    description: "Designed and deployed office network: routers, managed switches and access points across floors.",
+    description:
+      "Designed and deployed office network: routers, managed switches and access points across floors.",
     category: "IT Systems",
     tags: ["Router", "Switch", "Access Point"],
     image: network,
@@ -48,7 +51,8 @@ export const projects = [
   {
     id: 5,
     title: "CCTV Installation",
-    description: "Full-perimeter IP camera deployment with NVR, remote monitoring and storage planning.",
+    description:
+      "Full-perimeter IP camera deployment with NVR, remote monitoring and storage planning.",
     category: "IT Systems",
     tags: ["Security", "Cameras"],
     image: cctv,
@@ -56,7 +60,8 @@ export const projects = [
   {
     id: 6,
     title: "Biotime Setup",
-    description: "Biometric attendance system rollout with device configuration and HR integration.",
+    description:
+      "Biometric attendance system rollout with device configuration and HR integration.",
     category: "IT Systems",
     tags: ["Attendance", "Device"],
     image: biotime,
@@ -88,7 +93,8 @@ export const projects = [
   {
     id: 10,
     title: "Marketing Video",
-    description: "Promotional motion piece blending typography, transitions and product highlights.",
+    description:
+      "Promotional motion piece blending typography, transitions and product highlights.",
     category: "Motion Design",
     tags: ["After Effects", "Promo"],
     image: marketingVideo,

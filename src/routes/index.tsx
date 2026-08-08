@@ -8,6 +8,9 @@ import Works from "@/components/Works";
 import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import GitHubActivity from "@/components/GitHubActivity";
+import DesignLab from "@/components/DesignLab";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,12 +35,15 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="min-h-screen">
+      <ScrollReveal />
       <Navbar />
       <Hero />
       <About />
       <Services />
       <Skills />
+      <GitHubActivity />
       <Works />
+      <DesignLab />
       <Experience />
       <Contact />
       <Footer />
