@@ -8,7 +8,6 @@ import Experience from "@/components/Experience";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import GitHubActivity from "@/components/GitHubActivity";
-import DesignLab from "@/components/DesignLab";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export const Route = createFileRoute("/")({
@@ -41,7 +40,6 @@ function Index() {
       <Skills />
       <GitHubActivity />
       <Works />
-      <DesignLab />
       <Experience />
       <Contact />
       <Footer />
