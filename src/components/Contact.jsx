@@ -15,8 +15,9 @@ export default function Contact() {
     <section id="contact" className="relative py-24">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-            Contact
+          <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary flex items-center justify-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+            [SYS.CONTACT]
           </span>
           <h2 className="mt-3 font-display text-4xl font-bold tracking-tight sm:text-5xl">
             Let&apos;s build <span className="gradient-text">something solid</span>

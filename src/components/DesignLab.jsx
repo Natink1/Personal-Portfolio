@@ -31,8 +31,9 @@ export default function DesignLab() {
       <div className="mx-auto max-w-6xl px-4">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
-            <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Studio notes / 02
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+              [SYS.DESIGN_LAB]
             </span>
             <h2 className="mt-3 font-display text-4xl font-bold tracking-tight sm:text-5xl">
               The designer’s <span className="gradient-text">eye.</span>

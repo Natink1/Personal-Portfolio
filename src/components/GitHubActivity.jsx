@@ -58,15 +58,15 @@ export default function GitHubActivity() {
       <div className="relative mx-auto max-w-6xl px-4">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-              Live signal / 01
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+              [SYS.GITHUB_FEED]
             </span>
             <h2 className="mt-3 max-w-xl font-display text-4xl font-bold tracking-tight sm:text-5xl">
               Open source, <span className="gradient-text">in public.</span>
             </h2>
-            <p className="mt-4 max-w-xl text-muted-foreground">
-              A live snapshot of the work happening on GitHub. The data updates automatically from
-              the public profile.
+            <p className="mt-4 max-w-xl font-mono text-xs text-muted-foreground uppercase flex items-center gap-2">
+              <span className="text-primary">{`>`}</span> FETCHING LIVE SIGNAL FROM UPSTREAM... [OK]
             </p>
           </div>
           <a
@@ -97,9 +97,9 @@ export default function GitHubActivity() {
         <div className="glass-card mt-4 overflow-hidden rounded-md p-5 sm:p-7">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div>
-              <div className="font-display text-lg font-semibold">Contribution rhythm</div>
-              <div className="mt-1 text-xs text-muted-foreground">
-                Full year · {activeDays} active days · Live from GitHub
+              <div className="font-display text-lg font-semibold uppercase tracking-wide">Contribution rhythm</div>
+              <div className="mt-1 font-mono text-[10px] uppercase text-primary">
+                > {activeDays} ACTIVE DAYS // LIVE DATA_
               </div>
             </div>
             <div className="flex items-center gap-3 border border-border bg-background/40 px-3 py-2 font-mono text-xs">
@@ -159,8 +159,8 @@ export default function GitHubActivity() {
         <div className="mt-4 glass-card rounded-md p-5 sm:p-7">
           <div className="flex items-center justify-between">
             <div>
-              <div className="font-display text-lg font-semibold">Recently shipped</div>
-              <div className="mt-1 text-xs text-muted-foreground">Latest public repositories</div>
+              <div className="font-display text-lg font-semibold uppercase tracking-wide">Recently shipped</div>
+              <div className="mt-1 font-mono text-[10px] uppercase text-primary">> Latest public repositories_</div>
             </div>
             <Star className="h-4 w-4 text-primary" />
           </div>
@@ -181,14 +181,14 @@ export default function GitHubActivity() {
                   className="group flex min-h-28 items-start justify-between gap-3 bg-card p-5 transition-colors hover:bg-primary/8"
                 >
                   <span className="min-w-0">
-                    <span className="block truncate text-sm font-medium group-hover:text-primary">
+                    <span className="block truncate font-mono text-sm font-medium group-hover:text-primary">
                       {repo.name}
                     </span>
-                    <span className="mt-2 block text-[11px] text-muted-foreground">
-                      {repo.language || "Open source"} · {repo.stargazers_count} stars
+                    <span className="mt-2 block font-mono text-[10px] uppercase text-muted-foreground">
+                      [{repo.language || "SYS"}] // {repo.stargazers_count} STARS
                     </span>
                     <span className="mt-4 block font-mono text-[10px] uppercase text-muted-foreground">
-                      Updated {formatDate(repo.updated_at)}
+                      > UPDATED {formatDate(repo.updated_at)}
                     </span>
                   </span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
@@ -204,11 +204,11 @@ export default function GitHubActivity() {
 
 function Stat({ icon: Icon, label, value }) {
   return (
-    <div className="border border-border bg-card/40 p-4">
-      <div className="flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground">
-        <Icon className="h-3.5 w-3.5 text-primary" /> {label}
+    <div className="border-l-2 border-primary/30 bg-background/20 p-4 font-mono transition-colors hover:border-primary">
+      <div className="flex items-center gap-2 text-[10px] uppercase tracking-widest text-muted-foreground">
+        <Icon className="h-3.5 w-3.5 text-primary" /> {label.replace(/\s+/g, '_')}
       </div>
-      <div className="mt-3 font-mono text-3xl font-semibold text-foreground">{value}</div>
+      <div className="mt-2 text-3xl font-semibold text-foreground">{value}</div>
     </div>
   );
 }

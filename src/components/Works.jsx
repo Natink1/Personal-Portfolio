@@ -16,26 +16,27 @@ export default function Works() {
       <div className="mx-auto max-w-6xl px-4">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
-              Works & Projects
+            <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-primary flex items-center gap-2">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+              [SYS.PROJECTS]
             </span>
             <h2 className="mt-3 font-display text-4xl font-bold tracking-tight sm:text-5xl">
               Selected <span className="gradient-text">work</span>
             </h2>
           </div>
 
-          <div className="glass flex flex-wrap gap-1 rounded-full p-1">
+          <div className="flex flex-wrap gap-2">
             {categories.map((c) => (
               <button
                 key={c}
                 onClick={() => setActive(c)}
-                className={`rounded-full px-4 py-2 text-xs font-medium transition-all ${
+                className={`px-3 py-1.5 font-mono text-[11px] transition-all border ${
                   active === c
-                    ? "gradient-bg-primary text-primary-foreground shadow-glow"
-                    : "text-muted-foreground hover:text-primary"
+                    ? "border-primary bg-primary/10 text-primary shadow-glow"
+                    : "border-border bg-background/40 text-muted-foreground hover:border-primary/50 hover:text-foreground"
                 }`}
               >
-                {c}
+                --{c.toLowerCase().replace(/\s+/g, '-')}
               </button>
             ))}
           </div>
@@ -58,8 +59,8 @@ export default function Works() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80" />
                 <div className="absolute left-3 top-3">
-                  <span className="glass rounded-full px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-primary">
-                    {p.category}
+                  <span className="glass px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-wider text-primary border-l-2 border-l-primary">
+                    [{p.category}]
                   </span>
                 </div>
                 <button
@@ -80,7 +81,7 @@ export default function Works() {
                   {p.tags.map((t) => (
                     <span
                       key={t}
-                      className="rounded-full border border-border bg-secondary/40 px-2.5 py-0.5 text-[10px] text-foreground/80"
+                      className="border border-border/50 bg-secondary/20 px-2 py-0.5 font-mono text-[10px] text-muted-foreground uppercase"
                     >
                       {t}
                     </span>
