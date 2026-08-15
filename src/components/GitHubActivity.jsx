@@ -11,6 +11,7 @@ export default function GitHubActivity() {
   const [profile, setProfile] = useState(null);
   const [status, setStatus] = useState("loading");
   const [selectedDay, setSelectedDay] = useState(null);
+  const [snakeFrame, setSnakeFrame] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
@@ -46,11 +47,23 @@ export default function GitHubActivity() {
   }, []);
 
   const recentContributions = useMemo(() => activity?.contributions?.slice(-364) ?? [], [activity]);
+  const contributionWeeks = useMemo(() => chunkIntoWeeks(recentContributions), [recentContributions]);
   const activeDays = activity?.contributions?.filter((day) => day.count > 0).length ?? 0;
   const peakDay = useMemo(
     () => activity?.contributions?.reduce((peak, day) => (day.count > peak.count ? day : peak)),
     [activity],
   );
+  const snakeCells = useMemo(() => buildSnakeCells(contributionWeeks), [contributionWeeks]);
+
+  useEffect(() => {
+    if (!snakeCells.length) return undefined;
+
+    const frameTimer = window.setInterval(() => {
+      setSnakeFrame((current) => (current + 1) % snakeCells.length);
+    }, 140);
+
+    return () => window.clearInterval(frameTimer);
+  }, [snakeCells]);
 
   return (
     <section id="github" className="relative border-y border-border/60 py-24">
@@ -96,12 +109,12 @@ export default function GitHubActivity() {
 
         <div className="glass-card mt-4 overflow-hidden rounded-md p-5 sm:p-7">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <div>
-              <div className="font-display text-lg font-semibold uppercase tracking-wide">Contribution rhythm</div>
-              <div className="mt-1 font-mono text-[10px] uppercase text-primary">
-                > {activeDays} ACTIVE DAYS // LIVE DATA_
+              <div>
+                <div className="font-display text-lg font-semibold uppercase tracking-wide">Contribution rhythm</div>
+                <div className="mt-1 font-mono text-[10px] uppercase text-primary">
+                  {`> ${activeDays} ACTIVE DAYS // LIVE DATA_`}
+                </div>
               </div>
-            </div>
             <div className="flex items-center gap-3 border border-border bg-background/40 px-3 py-2 font-mono text-xs">
               <CalendarDays className="h-4 w-4 text-primary" />
               <span className="text-muted-foreground">Selected</span>
@@ -125,19 +138,30 @@ export default function GitHubActivity() {
                 role="grid"
                 aria-label="GitHub contributions during the last year"
               >
-                {recentContributions.map((day, index) => (
-                  <button
-                    type="button"
-                    key={day.date}
-                    title={`${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`}
-                    aria-label={`${day.count} contribution${day.count === 1 ? "" : "s"} on ${formatDate(day.date)}`}
-                    onMouseEnter={() => setSelectedDay(day)}
-                    onFocus={() => setSelectedDay(day)}
-                    onClick={() => setSelectedDay(day)}
-                    className={`contribution-cell contribution-cell-interactive level-${day.level}`}
-                    style={{ "--cell-delay": `${Math.min(index * 3, 700)}ms` }}
-                  />
-                ))}
+                {contributionWeeks.flatMap((week, weekIndex) =>
+                  week.map((day, dayIndex) => {
+                    const snakeOffset = getSnakeOffset(snakeCells, snakeFrame, weekIndex, dayIndex);
+
+                    return (
+                      <button
+                        type="button"
+                        key={day.date}
+                        title={`${day.count} contribution${day.count === 1 ? "" : "s"} on ${day.date}`}
+                        aria-label={`${day.count} contribution${day.count === 1 ? "" : "s"} on ${formatDate(day.date)}`}
+                        onMouseEnter={() => setSelectedDay(day)}
+                        onFocus={() => setSelectedDay(day)}
+                        onClick={() => setSelectedDay(day)}
+                        className={`contribution-cell contribution-cell-interactive level-${day.level}`}
+                        data-snake-active={snakeOffset !== null ? "true" : "false"}
+                        style={{
+                          "--cell-delay": `${Math.min((weekIndex * 7 + dayIndex) * 3, 700)}ms`,
+                          "--snake-opacity": snakeOffset === null ? 0 : Math.max(0.18, 1 - snakeOffset * 0.12),
+                          "--snake-scale": snakeOffset === 0 ? 1.9 : snakeOffset === 1 ? 1.55 : snakeOffset === 2 ? 1.3 : 1,
+                        }}
+                      />
+                    );
+                  }),
+                )}
               </div>
               <div className="mt-5 flex min-w-[920px] items-center justify-between text-[10px] text-muted-foreground">
                 <span>{formatDate(recentContributions[0]?.date)}</span>
@@ -160,7 +184,9 @@ export default function GitHubActivity() {
           <div className="flex items-center justify-between">
             <div>
               <div className="font-display text-lg font-semibold uppercase tracking-wide">Recently shipped</div>
-              <div className="mt-1 font-mono text-[10px] uppercase text-primary">> Latest public repositories_</div>
+              <div className="mt-1 font-mono text-[10px] uppercase text-primary">
+                {`> Latest public repositories_`}
+              </div>
             </div>
             <Star className="h-4 w-4 text-primary" />
           </div>
@@ -188,7 +214,7 @@ export default function GitHubActivity() {
                       [{repo.language || "SYS"}] // {repo.stargazers_count} STARS
                     </span>
                     <span className="mt-4 block font-mono text-[10px] uppercase text-muted-foreground">
-                      > UPDATED {formatDate(repo.updated_at)}
+                      {`> UPDATED ${formatDate(repo.updated_at)}`}
                     </span>
                   </span>
                   <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
@@ -236,6 +262,36 @@ function formatDate(date) {
   return new Intl.DateTimeFormat("en", { month: "short", day: "numeric", year: "numeric" }).format(
     new Date(date),
   );
+}
+
+function chunkIntoWeeks(contributions) {
+  const weeks = [];
+  for (let index = 0; index < contributions.length; index += 7) {
+    weeks.push(contributions.slice(index, index + 7));
+  }
+  return weeks;
+}
+
+function buildSnakeCells(weeks) {
+  return weeks.flatMap((week, weekIndex) => {
+    const indices = weekIndex % 2 === 0 ? [...week.keys()] : [...week.keys()].reverse();
+    return indices
+      .filter((dayIndex) => week[dayIndex]?.count > 0)
+      .map((dayIndex) => ({ weekIndex, dayIndex }));
+  });
+}
+
+function getSnakeOffset(snakeCells, frame, weekIndex, dayIndex) {
+  if (!snakeCells.length) return null;
+
+  const trailLength = Math.min(10, snakeCells.length - 1);
+
+  for (let offset = 0; offset <= trailLength; offset += 1) {
+    const cell = snakeCells[(frame - offset + snakeCells.length) % snakeCells.length];
+    if (cell.weekIndex === weekIndex && cell.dayIndex === dayIndex) return offset;
+  }
+
+  return null;
 }
 
 function ActivityError() {
