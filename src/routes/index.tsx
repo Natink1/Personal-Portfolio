@@ -13,11 +13,11 @@ import ScrollReveal from "@/components/ScrollReveal";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Natnael Deribe — Laravel Backend Developer & IT Systems Specialist" },
+      { title: "Natnael Deribe — Backend Developer & IT Systems Specialist" },
       {
         name: "description",
         content:
-          "Portfolio of Natnael Deribe — Laravel backend developer, IT systems specialist and creative designer based in Addis Ababa.",
+          "Portfolio of Natnael Deribe — backend developer, IT systems specialist and creative designer based in Addis Ababa.",
       },
       { property: "og:title", content: "Natnael Deribe — Portfolio" },
       {
