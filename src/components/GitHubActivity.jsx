@@ -9,36 +9,55 @@ export default function GitHubActivity() {
   const [activity, setActivity] = useState(null);
   const [repos, setRepos] = useState([]);
   const [profile, setProfile] = useState(null);
-  const [status, setStatus] = useState("loading");
+  const [activityStatus, setActivityStatus] = useState("loading");
+  const [repoStatus, setRepoStatus] = useState("loading");
+  const [profileStatus, setProfileStatus] = useState("loading");
   const [selectedDay, setSelectedDay] = useState(null);
   const [snakeFrame, setSnakeFrame] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
 
-    Promise.all([
-      fetch(CONTRIBUTIONS_URL).then((response) => {
+    fetch(CONTRIBUTIONS_URL)
+      .then((response) => {
         if (!response.ok) throw new Error("Contribution data unavailable");
         return response.json();
-      }),
-      fetch(REPOS_URL).then((response) => {
-        if (!response.ok) throw new Error("Repository data unavailable");
-        return response.json();
-      }),
-      fetch(`https://api.github.com/users/${USERNAME}`).then((response) => {
-        if (!response.ok) throw new Error("Profile data unavailable");
-        return response.json();
-      }),
-    ])
-      .then(([contributionData, repositoryData, profileData]) => {
+      })
+      .then((contributionData) => {
         if (cancelled) return;
         setActivity(contributionData);
-        setRepos(repositoryData.filter((repo) => !repo.fork).slice(0, 6));
-        setProfile(profileData);
-        setStatus("ready");
+        setActivityStatus("ready");
       })
       .catch(() => {
-        if (!cancelled) setStatus("error");
+        if (!cancelled) setActivityStatus("error");
+      });
+
+    fetch(REPOS_URL)
+      .then((response) => {
+        if (!response.ok) throw new Error("Repository data unavailable");
+        return response.json();
+      })
+      .then((repositoryData) => {
+        if (cancelled) return;
+        setRepos(repositoryData.filter((repo) => !repo.fork).slice(0, 6));
+        setRepoStatus("ready");
+      })
+      .catch(() => {
+        if (!cancelled) setRepoStatus("error");
+      });
+
+    fetch(`https://api.github.com/users/${USERNAME}`)
+      .then((response) => {
+        if (!response.ok) throw new Error("Profile data unavailable");
+        return response.json();
+      })
+      .then((profileData) => {
+        if (cancelled) return;
+        setProfile(profileData);
+        setProfileStatus("ready");
+      })
+      .catch(() => {
+        if (!cancelled) setProfileStatus("error");
       });
 
     return () => {
@@ -127,9 +146,9 @@ export default function GitHubActivity() {
               </span>
             </div>
           </div>
-          {status === "loading" ? (
+          {activityStatus === "loading" ? (
             <ActivitySkeleton />
-          ) : status === "error" ? (
+          ) : activityStatus === "error" ? (
             <ActivityError />
           ) : (
             <div className="mt-7 overflow-x-auto pb-2 contribution-scroll">
@@ -191,11 +210,15 @@ export default function GitHubActivity() {
             <Star className="h-4 w-4 text-primary" />
           </div>
           <div className="mt-5 grid gap-px overflow-hidden border border-border bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {status === "loading" ? (
+            {repoStatus === "loading" ? (
               <RepoSkeleton />
-            ) : status === "error" ? (
+            ) : repoStatus === "error" ? (
               <p className="bg-card p-5 text-sm text-muted-foreground sm:col-span-2 lg:col-span-3">
                 GitHub data is taking a break. Visit the profile for the latest work.
+              </p>
+            ) : repos.length === 0 ? (
+              <p className="bg-card p-5 text-sm text-muted-foreground sm:col-span-2 lg:col-span-3">
+                No public repositories were returned from GitHub yet.
               </p>
             ) : (
               repos.map((repo) => (
