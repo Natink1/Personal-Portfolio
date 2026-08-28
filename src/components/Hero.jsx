@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[92vh] overflow-hidden pb-16 pt-28 lg:pb-20 lg:pt-36"
+      className="relative min-h-[80vh] overflow-hidden pb-16 pt-28 lg:pb-20 lg:pt-36"
     >
       <div className="absolute inset-0 grid-pattern opacity-50" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/80 to-transparent" />

@@ -177,6 +177,31 @@
     transform: translateY(-4px);
   }
 
+  .about-card-glow {
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .about-card-glow:hover {
+    border-color: color-mix(in oklch, var(--color-primary) 40%, var(--glass-border));
+    box-shadow:
+      var(--shadow-card),
+      0 0 38px color-mix(in oklch, var(--color-primary) 18%, transparent);
+    transform: translateY(-2px);
+  }
+
+  .about-card-glow-spot {
+    opacity: var(--glow-opacity, 0);
+    background: radial-gradient(
+      circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      color-mix(in oklch, var(--color-primary) 28%, transparent) 0%,
+      color-mix(in oklch, var(--color-primary) 12%, transparent) 24%,
+      transparent 48%
+    );
+  }
+
   @keyframes float {
     0%,
     100% {
