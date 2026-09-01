@@ -35,8 +35,8 @@ export default function Contact() {
         <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_1.4fr]">
           <div className="space-y-4">
             {[
-              { icon: Mail, label: "Email", value: "natnael.deribe@example.com" },
-              { icon: Phone, label: "Phone", value: "+251 900 000 000" },
+              { icon: Mail, label: "Email", value: "natink4825@gmail.com" },
+              { icon: Phone, label: "Phone", value: "+251 924-11-48-25" },
               { icon: MapPin, label: "Location", value: "Addis Ababa, Ethiopia" },
             ].map(({ icon: Icon, label, value }) => (
               <div
@@ -76,8 +76,8 @@ export default function Contact() {
 
           <form onSubmit={onSubmit} className="glass-card grid gap-4 rounded-3xl p-6 sm:p-8">
             <div className="grid gap-4 sm:grid-cols-2">
-              <Field label="Your name" name="name" placeholder="Jane Doe" />
-              <Field label="Email" name="email" type="email" placeholder="jane@company.com" />
+              <Field label="Your name" name="name" placeholder="Natnael Deribe" />
+              <Field label="Email" name="email" type="email" placeholder="natink4825@gmail.com" />
             </div>
             <Field label="Subject" name="subject" placeholder="Project inquiry" />
             <div>
