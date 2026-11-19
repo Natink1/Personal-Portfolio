@@ -106,21 +106,16 @@ export default function About() {
             <div className="mt-5pointer-events-none absolute inset-px rounded-[calc(1.5rem-1px)] border border-white/5" />
             <div className="relative space-y-5 text-base leading-relaxed text-muted-foreground">
               <p>
-                I&apos;m Natnael Deribe, a Laravel backend developer and IT systems specialist
-                focused on building robust web applications and keeping the infrastructure behind
-                them running smoothly. My core work spans backend architecture with Laravel and PHP,
-                REST API design, MySQL data modeling, and admin dashboards with proper
-                authentication and role management.
+                I&apos;m Natnael Deribe, a backend developer and IT specialist based in Addis Ababa.
+                I build Laravel and PHP applications with clean APIs, reliable databases, and
+                simple admin tools.
               </p>
               <p>
-                On the IT side, I handle server and database administration, network configuration,
-                CCTV installation, biometric attendance systems, and day-to-day hardware and
-                software maintenance for organizations that need dependable infrastructure.
+                I also manage servers, networks, CCTV, Biotime devices, and everyday technical
+                support.
               </p>
               <p>
-                Alongside this, I work as a creative designer, crafting logos, brand identities, and
-                motion graphics. It&apos;s a complementary skill and a long-time hobby that pairs
-                naturally with the technical side of my work.
+                Outside systems, I design logos, brand assets, and motion graphics.
               </p>
             </div>
           </div>

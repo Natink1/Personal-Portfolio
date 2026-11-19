@@ -23,7 +23,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-24">
+    <section id="services" className="relative py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-4">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
