@@ -101,8 +101,8 @@ export default function GitHubActivity() {
               Activity is temporarily unavailable.
             </div>
           ) : (
-            <div className="contribution-scroll mt-7 overflow-x-auto pb-2">
-              <div className="contribution-grid contribution-grid-wide min-w-[1250px]" role="grid" aria-label="GitHub contributions">
+            <div className="contribution-scroll mt-7 pb-2">
+              <div className="contribution-grid contribution-grid-wide" role="grid" aria-label="GitHub contributions">
                 {weeks.flatMap((week, weekIndex) =>
                   week.map((day, dayIndex) => (
                     <button
@@ -125,7 +125,7 @@ export default function GitHubActivity() {
                   )),
                 )}
               </div>
-              <div className="mt-5 flex min-w-[1250px] items-center justify-between text-xs text-muted-foreground">
+              <div className="mt-5 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
                 <span>{formatDate(contributions[0]?.date)}</span>
                 <div className="flex items-center gap-2">
                   <span>Less</span>

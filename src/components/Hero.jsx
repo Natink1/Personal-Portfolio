@@ -34,8 +34,8 @@ export default function Hero() {
                 key={portrait}
                 src={portrait}
                 alt="Natnael Deribe"
-                className={`absolute inset-2 h-[494px] w-[calc(100%-1rem)] rounded-[1.55rem] object-cover object-top transition-all duration-1000 ${
-                  index === portraitIndex ? "opacity-100 scale-100" : "pointer-events-none opacity-0 scale-[1.03]"
+                className={`absolute inset-2 h-[494px] w-[calc(100%-1rem)] rounded-[1.55rem] object-cover object-top transition-opacity duration-700 will-change-[opacity] ${
+                  index === portraitIndex ? "opacity-100" : "pointer-events-none opacity-0"
                 }`}
               />
             ))}

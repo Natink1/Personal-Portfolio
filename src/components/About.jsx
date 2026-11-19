@@ -74,8 +74,8 @@ export default function About() {
                       alt="Natnael Deribe portrait"
                       width={768}
                       height={896}
-                      className={`absolute inset-0 h-full w-full object-cover grayscale transition-all duration-1000 ease-in-out group-hover:grayscale-0 ${
-                        index === portraitIndex ? "opacity-100 scale-100" : "opacity-0 scale-[1.02]"
+                      className={`absolute inset-0 h-full w-full object-cover grayscale transition-[opacity,filter] duration-700 ease-in-out will-change-[opacity] group-hover:grayscale-0 ${
+                        index === portraitIndex ? "opacity-100" : "opacity-0"
                       }`}
                     />
                   ))}
