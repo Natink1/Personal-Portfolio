@@ -27,7 +27,7 @@ export default function Hero() {
           <div className="hero-orbit-ring absolute -inset-5 hidden rounded-full border border-primary/15 lg:block" />
           <div className="hero-orbit-ring hero-orbit-ring-delayed absolute -inset-10 hidden rounded-full border border-primary/10 lg:block" />
 
-          <div className="glass relative h-[510px] w-full overflow-hidden rounded-[2rem] p-2 shadow-glow">
+          <div className="glass relative h-[510px] w-full overflow-hidden rounded-[2rem]  shadow-glow">
             <div className="absolute inset-0 hero-image-pattern opacity-35" />
             {portraits.map((portrait, index) => (
               <img

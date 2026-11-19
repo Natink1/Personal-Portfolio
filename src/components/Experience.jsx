@@ -44,20 +44,32 @@ export default function Experience() {
       item.removeAttribute("aria-hidden");
     });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        items.forEach((item, index) => {
-          window.setTimeout(() => item.classList.add("experience-revealed"), index * 190);
-        });
-        if (award) window.setTimeout(() => award.classList.add("experience-revealed"), items.length * 190);
-        observer.disconnect();
+    const sectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) section.classList.add("experience-section-revealed");
       },
-      { rootMargin: "0px 0px -18%", threshold: 0.35 },
+      { rootMargin: "0px 0px -12%", threshold: 0.12 },
     );
 
-    observer.observe(section);
-    return () => observer.disconnect();
+    const itemObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("experience-revealed");
+          itemObserver.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -10%", threshold: 0.18 },
+    );
+
+    items.forEach((item) => itemObserver.observe(item));
+    if (award) itemObserver.observe(award);
+    sectionObserver.observe(section);
+
+    return () => {
+      sectionObserver.disconnect();
+      itemObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -73,9 +85,31 @@ export default function Experience() {
           </h2>
         </div>
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-2 xl:gap-8">
+        <div className="experience-timeline mt-10">
+          <span className="experience-timeline-line" aria-hidden="true" />
           <Column icon={Briefcase} title="Experience" items={experience} keyA="role" keyB="org" />
-          <Column icon={GraduationCap} title="Education" items={education} keyA="degree" keyB="org" />
+        </div>
+
+        <div className="experience-education mt-12">
+          <div className="mb-5 flex items-center gap-3">
+            <div className="grid h-10 w-10 place-items-center rounded-xl gradient-bg-primary text-primary-foreground shadow-glow">
+              <GraduationCap className="h-5 w-5" />
+            </div>
+            <h3 className="font-display text-2xl font-semibold sm:text-3xl">Education</h3>
+          </div>
+          <ol className="experience-education-list grid gap-5 md:grid-cols-2">
+            {education.map((item, index) => (
+              <li
+                key={item.degree}
+                className="experience-item experience-scroll-item rounded-2xl border border-border/80 bg-card/70 p-5 shadow-card backdrop-blur-sm sm:p-6"
+                style={{ "--item-delay": `${(experience.length + index) * 190}ms` }}
+              >
+                <div className="font-mono text-sm uppercase tracking-wider text-primary">{item.period}</div>
+                <div className="mt-2 font-display text-xl font-semibold sm:text-2xl">{item.degree}</div>
+                <div className="mt-1 text-base text-muted-foreground">{item.org}</div>
+              </li>
+            ))}
+          </ol>
         </div>
 
         <div className="experience-award mt-10 flex flex-col items-center gap-4 border-t border-border/60 pt-8 text-center sm:flex-row sm:text-left">
@@ -103,14 +137,15 @@ function Column({ icon: Icon, title, items, keyA, keyB }) {
         <h3 className="font-display text-2xl font-semibold sm:text-3xl">{title}</h3>
       </div>
 
-      <ol className="relative space-y-6 border-l border-border pl-6">
+      <ol className="experience-list relative space-y-5">
         {items.map((it, i) => (
           <li
             key={i}
-            className="experience-item experience-scroll-item group relative"
+            className="experience-item experience-scroll-item group relative rounded-2xl border border-border/80 bg-card/70 p-5 shadow-card backdrop-blur-sm sm:p-6"
             style={{ "--item-delay": `${i * 190}ms` }}
           >
-            <span className="absolute -left-[31px] top-1.5 grid h-3 w-3 place-items-center rounded-full bg-primary shadow-glow ring-4 ring-background" />
+            <span className="experience-bridge-dot" aria-hidden="true" />
+            <span className="experience-bridge" aria-hidden="true" />
             <div className="flex items-start justify-between gap-3">
               <div>
                 <div className="font-mono text-sm uppercase tracking-wider text-primary">{it.period}</div>
