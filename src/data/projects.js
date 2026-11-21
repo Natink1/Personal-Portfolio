@@ -7,104 +7,98 @@ import biotime from "@/assets/proj-biotime.jpg";
 import logos from "@/assets/proj-logos.jpg";
 import brand from "@/assets/proj-brand.jpg";
 import social from "@/assets/proj-social.jpg";
-import marketingVideo from "@/assets/proj-marketing-video.jpg";
-import trainingVideo from "@/assets/proj-training-video.jpg";
 
-export const categories = ["All", "Laravel", "IT Systems", "Branding", "Motion Design"];
+export const categories = ["All", "Backend", "IT Systems", "Branding"];
 
 export const projects = [
   {
     id: 1,
-    title: "Laravel Business System",
+    title: "EMR Backend",
     description:
-      "End-to-end business management platform with role-based access, inventory and reporting modules.",
-    category: "Laravel",
-    tags: ["Laravel", "PHP", "MySQL", "Dashboard"],
+      "Enterprise Electronic Medical Record (EMR) backend platform managing patient records, clinical workflows, appointments, and secure doctor-patient access.",
+    category: "Backend",
+    tags: ["Laravel", "PHP", "MySQL", "Healthcare API"],
     image: laravelBusiness,
   },
   {
     id: 2,
-    title: "Laravel REST API",
+    title: "Demand Link App",
     description:
-      "Token-authenticated REST API powering mobile and web clients with versioning and rate limiting.",
-    category: "Laravel",
-    tags: ["API", "Auth", "Backend"],
+      "Full-stack web application linking supply and demand across enterprise distribution channels with inventory management and order routing.",
+    category: "Backend",
+    tags: ["Laravel", "REST API", "Database Design", "Web App"],
     image: laravelApi,
   },
   {
     id: 3,
-    title: "Admin Dashboard",
-    description: "Polished admin panel with user roles, CRUD modules, audit logs and analytics.",
-    category: "Laravel",
-    tags: ["Roles", "CRUD", "Laravel"],
-    image: adminDashboard,
+    title: "Activity Tracker Backend",
+    description:
+      "High-throughput activity logging service providing real-time user event tracking, audit logs, background queue processing, and telemetry reporting.",
+    category: "Backend",
+    tags: ["Node.js", "Laravel", "REST API", "WebSockets"],
+    image: laravelApi,
   },
   {
     id: 4,
-    title: "Network Setup",
+    title: "Licence Tracker App",
     description:
-      "Designed and deployed office network: routers, managed switches and access points across floors.",
-    category: "IT Systems",
-    tags: ["Router", "Switch", "Access Point"],
-    image: network,
+      "Automated enterprise license tracker monitoring software seat entitlements, expiration dates, renewal notifications, and vendor compliance.",
+    category: "Backend",
+    tags: ["Laravel", "Filament PHP", "MySQL", "Automation"],
+    image: laravelBusiness,
   },
   {
     id: 5,
-    title: "CCTV Installation",
+    title: "Admin Dashboards for Websites",
     description:
-      "Full-perimeter IP camera deployment with NVR, remote monitoring and storage planning.",
-    category: "IT Systems",
-    tags: ["Security", "Cameras"],
-    image: cctv,
+      "Bespoke administrative control panels crafted with Laravel and Filament PHP, featuring user permission management (RBAC), CRUD interfaces, and analytics.",
+    category: "Backend",
+    tags: ["Filament PHP", "Laravel", "RBAC", "CRUD"],
+    image: adminDashboard,
   },
   {
     id: 6,
-    title: "Biotime Setup",
+    title: "CCTV Installation",
     description:
-      "Biometric attendance system rollout with device configuration and HR integration.",
+      "Full-perimeter IP camera surveillance deployment with Hikvision equipment, NVR network storage, and remote mobile/desktop monitoring configuration.",
     category: "IT Systems",
-    tags: ["Attendance", "Device"],
-    image: biotime,
+    tags: ["Hikvision", "IP CCTV", "NVR", "Security Ops"],
+    image: cctv,
   },
   {
     id: 7,
-    title: "Logo Collection",
-    description: "Selection of original logo marks across tech, retail and service brands.",
-    category: "Branding",
-    tags: ["Logo", "Identity"],
-    image: logos,
+    title: "Datacenter Installation",
+    description:
+      "End-to-end datacenter infrastructure deployment: server rack assembly, cable management, patch panel termination, managed switches, and uninterrupted power setup.",
+    category: "IT Systems",
+    tags: ["Datacenter", "Rack Servers", "Managed Switches", "Networking"],
+    image: network,
   },
   {
     id: 8,
-    title: "Brand Identity Project",
-    description: "Complete identity system: typography, color, usage rules and stationery.",
-    category: "Branding",
-    tags: ["Typography", "Colors"],
-    image: brand,
+    title: "Biotime Attendance Machine Installation and Configuration",
+    description:
+      "Biometric attendance system rollout integrating ZKTeco BioTime hardware, access control door strike systems, and automated HR attendance report sync.",
+    category: "IT Systems",
+    tags: ["ZKTeco", "BioTime", "Access Control", "Biometrics"],
+    image: biotime,
   },
   {
     id: 9,
-    title: "Social Media Design",
-    description: "Cohesive social campaign visuals optimized for engagement across platforms.",
+    title: "Logo and Branding Projects",
+    description:
+      "Distinctive corporate visual identities, vector logo designs, brand guideline books, color schemes, and stationery collateral across tech and retail ventures.",
     category: "Branding",
-    tags: ["Visual Design"],
-    image: social,
+    tags: ["Logo Design", "Brand Identity", "Illustrator", "Typography"],
+    image: logos,
   },
   {
     id: 10,
-    title: "Marketing Video",
+    title: "Social Media Design and Management",
     description:
-      "Promotional motion piece blending typography, transitions and product highlights.",
-    category: "Motion Design",
-    tags: ["After Effects", "Promo"],
-    image: marketingVideo,
-  },
-  {
-    id: 11,
-    title: "Training Video",
-    description: "Animated explainer with kinetic typography for internal staff training.",
-    category: "Motion Design",
-    tags: ["Motion", "Editing"],
-    image: trainingVideo,
+      "Strategic social media marketing assets, carousel graphics, promotional campaign creatives, and brand presence design optimized for engagement.",
+    category: "Branding",
+    tags: ["Photoshop", "Social Media", "Visual Content", "Campaigns"],
+    image: social,
   },
 ];

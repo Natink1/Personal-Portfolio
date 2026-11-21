@@ -1,10 +1,30 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { ArrowUpRight, X } from "lucide-react";
 import { categories, projects } from "@/data/projects";
 
 export default function Works() {
   const [active, setActive] = useState("All");
   const [selected, setSelected] = useState(null);
+
+  // Prevent background page from scrolling when modal is open
+  useEffect(() => {
+    if (selected) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") {
+          setSelected(null);
+        }
+      };
+      window.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
+  }, [selected]);
 
   const filtered = useMemo(
     () => (active === "All" ? projects : projects.filter((p) => p.category === active)),
@@ -25,28 +45,31 @@ export default function Works() {
             </h2>
           </div>
 
+          {/* Clean Category Filters with Modern Typography */}
           <div className="flex flex-wrap gap-2">
             {categories.map((c) => (
               <button
                 key={c}
+                type="button"
                 onClick={() => setActive(c)}
-                className={`px-3 py-1.5 font-mono text-[11px] transition-all border ${
+                className={`rounded-full px-4 py-1.5 font-sans text-xs sm:text-sm font-medium transition-all cursor-pointer ${
                   active === c
-                    ? "border-primary bg-primary/10 text-primary shadow-glow"
-                    : "border-border bg-background/40 text-muted-foreground hover:border-primary/50 hover:text-foreground"
+                    ? "bg-primary text-primary-foreground shadow-glow font-semibold"
+                    : "border border-border/70 bg-background/50 text-muted-foreground hover:border-primary/50 hover:text-foreground"
                 }`}
               >
-                --{c.toLowerCase().replace(/\s+/g, '-')}
+                {c}
               </button>
             ))}
           </div>
         </div>
 
+        {/* Projects Grid */}
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p) => (
             <article
               key={p.id}
-              className="glass-card glow-on-hover group relative overflow-hidden rounded-2xl"
+              className="glass-card glow-on-hover group relative overflow-hidden rounded-2xl border border-border/70 transition-all hover:border-primary/50"
             >
               <div className="relative aspect-[4/3] overflow-hidden">
                 <img
@@ -55,17 +78,18 @@ export default function Works() {
                   width={1024}
                   height={768}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/25 to-transparent opacity-85" />
                 <div className="absolute left-3 top-3">
-                  <span className="glass px-2 py-1 font-mono text-[10px] font-medium uppercase tracking-wider text-primary border-l-2 border-l-primary">
-                    [{p.category}]
+                  <span className="glass rounded-md px-2.5 py-1 font-sans text-xs font-medium text-primary border border-primary/20 backdrop-blur-md">
+                    {p.category}
                   </span>
                 </div>
                 <button
+                  type="button"
                   onClick={() => setSelected(p)}
-                  className="absolute inset-0 flex items-end justify-end p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  className="absolute inset-0 flex items-end justify-end p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 z-10 cursor-pointer"
                   aria-label={`View ${p.title}`}
                 >
                   <span className="inline-flex items-center gap-1.5 rounded-full gradient-bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground shadow-glow">
@@ -75,13 +99,17 @@ export default function Works() {
               </div>
 
               <div className="p-5">
-                <h3 className="font-display text-lg font-semibold">{p.title}</h3>
-                <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground">{p.description}</p>
+                <h3 className="font-display text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                  {p.title}
+                </h3>
+                <p className="mt-1.5 line-clamp-2 text-sm text-muted-foreground leading-relaxed">
+                  {p.description}
+                </p>
                 <div className="mt-4 flex flex-wrap gap-1.5">
                   {p.tags.map((t) => (
                     <span
                       key={t}
-                      className="border border-border/50 bg-secondary/20 px-2 py-0.5 font-mono text-[10px] text-muted-foreground uppercase"
+                      className="border border-border/60 bg-background/50 px-2 py-0.5 font-mono text-[10px] text-muted-foreground uppercase"
                     >
                       {t}
                     </span>
@@ -93,18 +121,20 @@ export default function Works() {
         </div>
       </div>
 
+      {/* Modal with Locked Body Scroll and Independent Modal Scroll */}
       {selected && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-background/70 p-4 backdrop-blur-md animate-fade-up"
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-background/80 backdrop-blur-md animate-fade-up overflow-y-auto"
           onClick={() => setSelected(null)}
         >
           <div
-            className="glass-card relative w-full max-w-3xl overflow-hidden rounded-3xl"
+            className="glass-card relative my-auto w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl border border-border/80 shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <button
+              type="button"
               onClick={() => setSelected(null)}
-              className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full glass text-foreground hover:text-primary"
+              className="absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full glass text-foreground hover:text-primary transition-colors cursor-pointer"
               aria-label="Close"
             >
               <X className="h-4 w-4" />
@@ -119,20 +149,41 @@ export default function Works() {
               />
             </div>
             <div className="p-6 sm:p-8">
-              <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-medium uppercase tracking-wider text-primary">
-                {selected.category}
-              </span>
-              <h3 className="mt-3 font-display text-2xl font-bold">{selected.title}</h3>
-              <p className="mt-3 text-muted-foreground">{selected.description}</p>
-              <div className="mt-5 flex flex-wrap gap-2">
+              <div className="flex items-center gap-2">
+                <span className="rounded-md border border-primary/30 bg-primary/10 px-2.5 py-0.5 font-sans text-xs font-semibold text-primary">
+                  {selected.category}
+                </span>
+                <span className="font-mono text-[10px] text-muted-foreground uppercase">
+                  STATUS // COMPLETED
+                </span>
+              </div>
+              <h3 className="mt-3 font-display text-2xl font-bold text-foreground">
+                {selected.title}
+              </h3>
+              <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">
+                {selected.description}
+              </p>
+              <div className="mt-5 flex flex-wrap gap-1.5">
                 {selected.tags.map((t) => (
                   <span
                     key={t}
-                    className="rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs text-primary"
+                    className="rounded border border-primary/30 bg-primary/10 px-2.5 py-1 font-mono text-xs text-primary"
                   >
                     {t}
                   </span>
                 ))}
+              </div>
+              <div className="mt-8 border-t border-border/50 pt-5 flex items-center justify-between">
+                <span className="font-mono text-xs text-muted-foreground">
+                  Interested in this system?
+                </span>
+                <a
+                  href="#contact"
+                  onClick={() => setSelected(null)}
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline underline-offset-4"
+                >
+                  Get in touch <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
               </div>
             </div>
           </div>
